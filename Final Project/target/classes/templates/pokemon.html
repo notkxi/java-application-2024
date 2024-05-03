@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pokémon Cards</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<style>
+    .card-container {
+        display: flex;
+        flex-wrap: wrap; /* Allow cards to wrap to the next line */
+        justify-content: space-around; /* Distribute cards evenly with space around them */
+    }
+
+    .card {
+        flex: 1 1 200px; /* Allow cards to grow and shrink with a fixed width of 200px */
+        margin: 10px; /* Add margin around each card */
+        padding: 10px; /* Add padding inside each card */
+        border: 1px solid #ccc; /* Add border to each card */
+        border-radius: 5px; /* Add rounded corners to each card */
+        text-align: center; /* Center-align card content */
+        max-width: 250px; /* Set maximum width for each card */
+    }
+    img {
+        width: 250px; /* Set the desired width */
+        height: auto; /* Preserve the aspect ratio */
+        display: block;
+        margin: 0 auto; /* Center the image in the card */
+    }
+</style>
+<body>
+<h1>Pokémon Cards</h1>
+<div class="card-container">
+    <div th:each="card : ${cards}" class="card">
+        <h3 th:text="${card.name}"></h3>
+        <p>HP: <span th:text="${card.hp}"></span></p>
+        <img th:src="${card.small}" alt="Pokemon Card Image">
+        <h3>Average Sell Price: $<span th:text="${card.price}"></span></h3>
+    </div>
+</div>
+</body>
+</html>
